@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangzhixuan.mapper.OrderMapper">
+
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+        id, order_no,customer_id,description,address,telephone,mobile,salesman,prepare_document,audit,signfor,create_time
+    </sql>
+    
+    <select id="selectLastRecordOrderNo" resultType="java.lang.String">
+    	select order_no from tb_order order by id desc limit 1
+    </select>
+
+</mapper>
