@@ -2,6 +2,9 @@ package com.wangzhixuan.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -20,8 +23,12 @@ import com.wangzhixuan.commons.base.BaseController;
 import com.wangzhixuan.commons.result.PageInfo;
 import com.wangzhixuan.commons.utils.StringEscapeEditor;
 import com.wangzhixuan.model.Company;
+import com.wangzhixuan.model.Customer;
 import com.wangzhixuan.model.Order;
+import com.wangzhixuan.model.OrderItem;
 import com.wangzhixuan.service.ICompanyService;
+import com.wangzhixuan.service.ICustomerService;
+import com.wangzhixuan.service.IOrderItemService;
 import com.wangzhixuan.service.IOrderService;
 
 /**
@@ -39,8 +46,12 @@ import com.wangzhixuan.service.IOrderService;
 public class OrderController extends BaseController {
 	@Autowired
 	private IOrderService orderService;
-    @Autowired
+	@Autowired
 	private ICompanyService companyService;
+	@Autowired
+	private ICustomerService customerService;
+    @Autowired
+	private IOrderItemService orderItemService;
 
 	@InitBinder
 	@Override
@@ -132,7 +143,15 @@ public class OrderController extends BaseController {
 	@RequestMapping("/editPage")
 	public String editPage(Model model, Long id) {
 		Order order = orderService.selectById(id);
+		Customer customer = customerService.selectById(order.getCustomerId());
+		order.setCustomer(customer);
+
+		Map<String, Object> columnMap = new HashMap<String, Object>();
+		columnMap.put("order_id", order.getId());
+		List<OrderItem> orderItemList = orderItemService.selectByMap(columnMap);
+
 		model.addAttribute("order", order);
+		model.addAttribute("orderItemList", orderItemList);
 		return "admin/order/orderEdit";
 	}
 

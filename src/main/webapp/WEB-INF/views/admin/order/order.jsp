@@ -35,12 +35,18 @@
                 width : '100',
                 title : '客户单位',
                 field : 'customer.name',
-                sortable : true
+                sortable : true,
+                formatter:function(value,rec){
+                    return rec.customer.name;
+                 }
             }, {
                 width : '80',
                 title : '联系人',
                 field : 'customer.linkman',
-                sortable : true
+                sortable : true,
+                formatter:function(value,rec){
+                    return rec.customer.linkman;
+                 }
             }, {
                 width : '100',
                 title : '联系电话',
