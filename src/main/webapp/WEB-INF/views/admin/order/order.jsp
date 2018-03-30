@@ -162,8 +162,8 @@
         }
         parent.$.modalDialog({
             title : '编辑',
-            width : 500,
-            height : 400,
+            width : 1000,
+            height : 600,
             href : '${path }/order/editPage?id=' + id,
             buttons : [ {
                 text : '确定',

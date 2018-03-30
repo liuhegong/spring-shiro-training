@@ -3,6 +3,7 @@ package com.wangzhixuan.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.wangzhixuan.commons.utils.JsonUtils;
 
 /**
@@ -10,6 +11,7 @@ import com.wangzhixuan.commons.utils.JsonUtils;
  * 订单详细信息(货物信息)
  *
  */
+@TableName("order_item")
 public class OrderItem implements Serializable {
 
 	private static final long serialVersionUID = 1L;

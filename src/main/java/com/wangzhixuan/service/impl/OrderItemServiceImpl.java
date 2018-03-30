@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.wangzhixuan.commons.result.PageInfo;
@@ -27,12 +26,11 @@ public class OrderItemServiceImpl extends ServiceImpl<OrderItemMapper, OrderItem
 	@Override
 	public void selectDataGrid(PageInfo pageInfo) {
 		Page<OrderItem> page = new Page<OrderItem>(pageInfo.getNowpage(), pageInfo.getSize());
-
-		EntityWrapper<OrderItem> wrapper = new EntityWrapper<OrderItem>();
-		wrapper.orderBy(pageInfo.getSort(), pageInfo.getOrder().equalsIgnoreCase("ASC"));
-		selectPage(page, wrapper);
-
-		List<OrderItem> records = page.getRecords();
+		Long orderId = (Long) pageInfo.getCondition().get("orderId");
+		List<OrderItem> records = orderItemMapper.selectItemByOrderId(orderId);
+		if (records != null) {
+			pageInfo.setPagesize(records.size());
+		}
 		pageInfo.setRows(records);
 		pageInfo.setTotal(page.getTotal());
 	}

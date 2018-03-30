@@ -156,6 +156,28 @@ public class OrderController extends BaseController {
 	}
 
 	/**
+	 * <b>方法描述：</b>获取订单项<br/>
+	 * <b>参数描述：</b><br/>
+	 * 
+	 * @param model
+	 * @param id
+	 * @return<br/>
+	 * @return String<br/>
+	 * @version<b>版本：</b>V1<br/>
+	 * @author<b>创建人：</b>hugo<br/>
+	 */
+	@RequestMapping("/getOrderItemDatagrid")
+	@ResponseBody
+	public Object getOrderItemDatagrid(Long orderId) {
+		PageInfo pageInfo = new PageInfo(1, Integer.MAX_VALUE, "id", "ASC");
+		Map<String, Object> condition = new HashMap<>();
+		condition.put("orderId", orderId);
+		pageInfo.setCondition(condition);
+		orderItemService.selectDataGrid(pageInfo);
+		return pageInfo;
+	}
+
+	/**
 	 * 编辑
 	 *
 	 * @param role
