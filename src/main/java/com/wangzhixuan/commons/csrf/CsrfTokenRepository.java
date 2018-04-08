@@ -22,7 +22,7 @@ public interface CsrfTokenRepository {
 	 * @param response the {@link HttpServletResponse} to use
 	 */
 	void saveToken(CsrfTokenBean token, HttpServletRequest request,
-			HttpServletResponse response);
+				   HttpServletResponse response);
 
 	/**
 	 * Loads the expected {@link CsrfTokenBean} from the {@link HttpServletRequest}

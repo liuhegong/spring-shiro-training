@@ -40,7 +40,7 @@ import org.springframework.cache.Cache.ValueWrapper;
 public class ShiroSpringCache<K, V> implements org.apache.shiro.cache.Cache<K, V> {
 	private static final Logger logger = LogManager.getLogger(ShiroSpringCache.class);
 	
-	private final org.springframework.cache.Cache cache;
+	private final Cache cache;
 	
 	public ShiroSpringCache(Cache cache) {
 		if (cache == null) {
