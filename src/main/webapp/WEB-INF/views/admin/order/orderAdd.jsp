@@ -187,7 +187,6 @@ var index; //送货单行下标
 				updateActions(index);
 			},
 			onAfterEdit:function(index,row){
-				alert(index);
 				row.editing = false;
 				updateActions(index);
 			},

@@ -192,7 +192,6 @@
 				updateActions(index);
 			},
 			onAfterEdit:function(index,row){
-				alert(index);
 				row.editing = false;
 				updateActions(index);
 			},
