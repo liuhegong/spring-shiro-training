@@ -38,12 +38,11 @@
         </P>
         <div style="height: 50px; line-height: 50px; margin-top: 10px;border-top-color: rgb(231, 231, 231); border-top-width: 1px; border-top-style: solid;">
             <P style="margin: 0px 35px 20px 45px;">
-                <span style="float: left;">
-                    <a style="color: rgb(204, 204, 204);" href="javascript:;">忘记密码?</a>
-                </span>
-                <span style="float: right;">
-                    <a style="color: rgb(204, 204, 204); margin-right: 10px;" href="javascript:;">注册</a>
-                    <a style="background: rgb(0, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;" href="javascript:;" onclick="submitForm()">登录</a>
+               <%-- <span style="float: left;">
+                    <a style="color: rgb(204, 204, 204);" href="javascript:;"></a>
+                </span>--%>
+                <span >
+                    <a style="background: rgb(0, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;" href="javascript:;" onclick="submitForm()">登&nbsp;&nbsp;&nbsp;&nbsp;录</a>
                 </span>
             </P>
         </div>
@@ -51,7 +50,7 @@
 </div>
 <div style="text-align:center;">
     <p>
-        <a href="http://www.dreamlu.net/" target="_blank">如梦技术</a>
+        <a href="http://www.糊家.com/" target="_blank">糊家技术</a>
         <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256912241'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1256912241%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
     </p>
 </div>

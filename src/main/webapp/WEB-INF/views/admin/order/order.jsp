@@ -20,19 +20,27 @@
                 field : 'id',
                 sortable : true
             }, {
-                width : '100',
+                width : '200',
                 title : '单号',
                 field : 'orderNo',
                 sortable : true
             }
             , {
-                width : '100',
-                title : '日期',
+                width : '200',
+                title : '送货日期',
+                field : 'orderDate',
+                sortable : true,
+                formatter: function(value,row,index){
+                    return value.substring(0,10);
+                }
+                }, {
+                width : '200',
+                title : '创建日期',
                 field : 'createTime',
                 sortable : true
             }
             , {
-                width : '100',
+                width : '200',
                 title : '客户单位',
                 field : 'customer.name',
                 sortable : true,
@@ -40,7 +48,7 @@
                     return rec.customer.name;
                  }
             }, {
-                width : '80',
+                width : '200',
                 title : '联系人',
                 field : 'customer.linkman',
                 sortable : true,
@@ -48,14 +56,14 @@
                     return rec.customer.linkman;
                  }
             }, {
-                width : '100',
+                width : '200',
                 title : '联系电话',
                 field : 'telephone'
             } 
             , {
                 field : 'action',
                 title : '操作',
-                width : 200,
+                width : 300,
                 formatter : function(value, row, index) {
                     var str = '';
                         <shiro:hasPermission name="/order/edit">

@@ -5,7 +5,7 @@
 <head>
 <%@ include file="/commons/basejs.jsp" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>主页</title>
+<title>送货单管理系统</title>
 <script type="text/javascript">
     var index_tabs;
     var indexTabsMenu;
@@ -211,15 +211,7 @@
         <div data-options="region:'center'" style="overflow: hidden;">
             <div id="index_tabs" style="overflow: hidden;">
                 <div title="首页" data-options="iconCls:'fi-home',border:false" style="overflow: hidden;">
-                    <script src='https://git.oschina.net/wangzhixuan/spring-shiro-training/widget_preview'></script>
-                    <style>
-                        .pro_name a{color: #4183c4;}
-                        .osc_git_title{background-color: #d8e5f1;}
-                        .osc_git_box{background-color: #fafafa;}
-                        .osc_git_box{border-color: #ddd;}
-                        .osc_git_info{color: #666;}
-                        .osc_git_main a{color: #4183c4;}
-                    </style>
+
                 </div>
             </div>
         </div>

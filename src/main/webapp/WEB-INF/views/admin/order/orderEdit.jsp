@@ -288,7 +288,7 @@
        		 <input type="hidden" id="itemJSONStr" name="itemJSONStr">
             <table class="grid">
                 <tr>
-                    <td>日期：</td>
+                    <td>送货日期：</td>
                     <td><input id="orderDate" name="orderDate" type="text" placeholder="请输入送货日期" class="easyui-datebox" data-options="required:true" value="${order.orderDate }"></td>
                 	<td>单号：</td>
                 	<td><input name="orderNo" type="text" placeholder="保存后系统自动生成" class="span2" readonly="readonly" disabled="disabled" value="${order.orderNo }"></td>
