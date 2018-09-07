@@ -1,24 +1,5 @@
 package com.wangzhixuan.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.ServletRequestDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.wangzhixuan.commons.base.BaseController;
 import com.wangzhixuan.commons.result.PageInfo;
 import com.wangzhixuan.commons.utils.StringEscapeEditor;
@@ -30,6 +11,19 @@ import com.wangzhixuan.service.ICompanyService;
 import com.wangzhixuan.service.ICustomerService;
 import com.wangzhixuan.service.IOrderItemService;
 import com.wangzhixuan.service.IOrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -110,7 +104,7 @@ public class OrderController extends BaseController {
 	/**
 	 * 添加
 	 *
-	 * @param role
+	 * @param order
 	 * @return
 	 */
 	@PostMapping("/add")
@@ -156,11 +150,32 @@ public class OrderController extends BaseController {
 	}
 
 	/**
+	 * 查看页
+	 *
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/showPage")
+	public String showPage(Model model, Long id) {
+		Order order = orderService.selectById(id);
+		Customer customer = customerService.selectById(order.getCustomerId());
+		order.setCustomer(customer);
+
+		Map<String, Object> columnMap = new HashMap<String, Object>();
+		columnMap.put("order_id", order.getId());
+		List<OrderItem> orderItemList = orderItemService.selectByMap(columnMap);
+
+		model.addAttribute("order", order);
+		model.addAttribute("orderItemList", orderItemList);
+		return "admin/order/orderView";
+	}
+
+	/**
 	 * <b>方法描述：</b>获取订单项<br/>
 	 * <b>参数描述：</b><br/>
 	 * 
-	 * @param model
-	 * @param id
+	 * @param orderId
 	 * @return<br/>
 	 * @return String<br/>
 	 * @version<b>版本：</b>V1<br/>
@@ -180,7 +195,7 @@ public class OrderController extends BaseController {
 	/**
 	 * 编辑
 	 *
-	 * @param role
+	 * @param order
 	 * @return
 	 */
 	@RequestMapping("/edit")

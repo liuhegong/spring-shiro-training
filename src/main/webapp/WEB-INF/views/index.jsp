@@ -210,12 +210,12 @@
         </div>
         <div data-options="region:'center'" style="overflow: hidden;">
             <div id="index_tabs" style="overflow: hidden;">
-                <div title="首页" data-options="iconCls:'fi-home',border:false" style="overflow: hidden;">
-
+                <div title="首页" data-options="iconCls:'fi-home',border:false" style="overflow: hidden;background: url("${staticPath }/static/style/images/backgroup.jpg")">
+                <img src="${staticPath }/static/style/images/backgroup.jpg" width="100%" height="100%"/>
                 </div>
             </div>
         </div>
-        <div data-options="region:'south',border:false" style="height: 30px;line-height:30px; overflow: hidden;text-align: center;background-color: #eee" >Copyright © 2015 power by <a href="http://www.dreamlu.net/" target="_blank">如梦技术</a></div>
+        <div data-options="region:'south',border:false" style="height: 30px;line-height:30px; overflow: hidden;text-align: center;background-color: #eee" >Copyright © 2015 power by <a href="http://www.糊家.com/" target="_blank">糊家技术</a></div>
     </div>
     <div id="tabsMenu">
         <div data-options="iconCls:'fi-loop'" type="refresh" style="font-size: 12px;">刷新</div>

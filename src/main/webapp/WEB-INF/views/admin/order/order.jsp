@@ -69,7 +69,9 @@
                         <shiro:hasPermission name="/order/edit">
                             str += $.formatString('<a href="javascript:void(0)" class="role-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'fi-pencil icon-blue\'" onclick="editOrderFun(\'{0}\');" >编辑</a>', row.id);
                         </shiro:hasPermission>
-                        <shiro:hasPermission name="/order/delete">
+                    str += '&nbsp;&nbsp;|&nbsp;&nbsp;';
+                    str += $.formatString('<a href="javascript:void(0)" class="role-easyui-linkbutton-show" data-options="plain:true" onclick="showOrderFun(\'{0}\');" >查看</a>', row.id);
+                    <shiro:hasPermission name="/order/delete">
                             str += '&nbsp;&nbsp;|&nbsp;&nbsp;';
                             str += $.formatString('<a href="javascript:void(0)" class="role-easyui-linkbutton-del" data-options="plain:true,iconCls:\'fi-x icon-red\'" onclick="deleteOrderFun(\'{0}\');" >删除</a>', row.id);
                         </shiro:hasPermission>
@@ -78,6 +80,7 @@
             } ] ],
             onLoadSuccess:function(data){
                 $('.role-easyui-linkbutton-edit').linkbutton({text:'编辑'});
+                $('.role-easyui-linkbutton-show').linkbutton({text:'查看'});
                 $('.role-easyui-linkbutton-del').linkbutton({text:'删除'});
             },
             toolbar : '#orderToolbar'
@@ -179,6 +182,29 @@
                     parent.$.modalDialog.openner_dataGrid = orderDataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
                     var f = parent.$.modalDialog.handler.find('#orderEditForm');
                     f.submit();
+                }
+            } ]
+        });
+    }
+
+    //查看
+    function showOrderFun(id) {
+        if (id == undefined) {
+            var rows = orderDataGrid.datagrid('getSelections');
+            id = rows[0].id;
+        } else {
+            orderDataGrid.datagrid('unselectAll').datagrid('uncheckAll');
+        }
+        parent.$.modalDialog({
+            title : '查看详情',
+            width : 1000,
+            height : 600,
+            href : '${path }/order/showPage?id=' + id,
+            buttons : [ {
+                text : '关闭',
+                handler : function() {
+                    $.modalDialog.handler.dialog('destroy');
+                    $.modalDialog.handler = undefined;
                 }
             } ]
         });
