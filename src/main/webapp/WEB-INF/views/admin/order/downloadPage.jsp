@@ -1,0 +1,2 @@
+<font color="#FF00FF">Web打印服务CLodop未安装启动，点击这里<a href="CLodop_Setup_for_Win32NT.exe" target="_self">下载执行安装</a><br>
+	（若此前已安装过，可<a href="CLodop.protocol:setup" target="_self">点这里直接再次启动</a>），成功后请刷新本页面。</font>

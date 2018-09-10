@@ -265,10 +265,16 @@
                 {
                     text : '打印',
                     handler : function() {
-                        var strHTML =  parent.$.modalDialog.handler.html();
-                        LODOP.SET_PRINT_PAGESIZE(1, 0, 0,"A4");
-                        LODOP.ADD_PRINT_HTM(30,1,"100%","100%",strHTML);
-                        LODOP.PREVIEW();
+                        if(typeof LODOP === "undefined"){
+                           var html =  "<font color=\"#FF00FF\">Web打印服务CLodop未安装启动，点击这里<a href=\"${path}/static/CLodop_Setup_for_Win32NT.exe\" target=\"_self\">下载执行安装</a><br>（若此前已安装过，可<a href=\"CLodop.protocol:setup\" target=\"_self\">点这里直接再次启动</a>），成功后请刷新本页面。</font>";
+                            parent.$.modalDialog.handler.html(html);
+                        }else{
+                            var strHTML =  parent.$.modalDialog.handler.html();
+                            LODOP.SET_PRINT_PAGESIZE(1, 0, 0,"A4");
+                            LODOP.ADD_PRINT_HTM(30,1,"100%","100%",strHTML);
+                            LODOP.PREVIEW();
+                        }
+
                     }
                 },
                 {

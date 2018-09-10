@@ -205,4 +205,9 @@ public class OrderController extends BaseController {
 		return renderSuccess("编辑成功！");
 	}
 
+	@RequestMapping("/downloadPage")
+	public String downloadPage() {
+		return "admin/order/downloadPage";
+	}
+
 }
