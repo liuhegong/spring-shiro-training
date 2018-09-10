@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/commons/global.jsp" %>
-<script type="text/javascript">
-
-</script>
 <style>
 	.showViewTable{
 		margin:0 auto;
@@ -24,7 +21,7 @@
 		border-spacing: 0px;
 		margin:0 auto;
 		border-style:solid;
-		width:100%;
+		width:99%;
 		margin-top: 2px;
 		padding:0px;
 		border: solid 1px rgb(82,118,243);
@@ -53,20 +50,21 @@
 </style>
 <div class="easyui-layout" data-options="fit:true,border:false">
     <div data-options="region:'center',border:false" title="" style="overflow: hidden;color: rgb(82,118,243);">
+		<form id="orderShowForm" method="post">
             <table  class="showViewTable">
 				<thead>
 					<th colspan="2" align="center" style="font-size: 30px;">阳江市江城区建泓五金制品厂送货单</th>
 				</thead>
                 <tr>
-                    <td width="80%">送货日期：<fmt:formatDate pattern="yyyy-MM-dd"  value="${order.orderDate }" /></td>
+                    <td width="70%">送货日期：<fmt:formatDate pattern="yyyy-MM-dd"  value="${order.orderDate }" /></td>
                 	<td>单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：${order.orderNo }</td>
                 </tr>
                 <tr>
-                    <td width="80%">客户单位：${order.customer.name }</td>
+                    <td width="70%">客户单位：${order.customer.name }</td>
                     <td >联&nbsp;&nbsp;系&nbsp;人：${order.customer.linkman }</td>
                 </tr>
                 <tr>
-                    <td width="80%">联系地址：${order.customer.address }</td>
+                    <td width="70%">联系地址：${order.customer.address }</td>
                     <td>联系电话：${order.customer.telephone }</td>
                 </tr>
                </table>

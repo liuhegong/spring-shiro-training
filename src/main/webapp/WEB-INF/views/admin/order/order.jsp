@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/commons/global.jsp" %>
+<script src='http://127.0.0.1:8000/CLodopfuncs.js'></script>
 <script type="text/javascript">
     var orderDataGrid;
     $(function() {
@@ -257,16 +258,28 @@
         }
         parent.$.modalDialog({
             title : '查看详情',
-            width : 1000,
+            width : 750,
             height : 600,
             href : '${path }/order/showPage?id=' + id,
-            buttons : [ {
+            buttons : [
+                {
+                    text : '打印',
+                    handler : function() {
+                        var strHTML =  parent.$.modalDialog.handler.html();
+                        LODOP.SET_PRINT_PAGESIZE(1, 0, 0,"A4");
+                        LODOP.ADD_PRINT_HTM(30,1,"100%","100%",strHTML);
+                        LODOP.PREVIEW();
+                    }
+                },
+                {
                 text : '关闭',
                 handler : function() {
                     $.modalDialog.handler.dialog('destroy');
                     $.modalDialog.handler = undefined;
                 }
-            } ]
+            }
+
+            ]
         });
     }
 
