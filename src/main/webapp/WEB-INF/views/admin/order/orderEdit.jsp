@@ -289,7 +289,7 @@
             <table class="grid">
                 <tr>
                     <td>送货日期：</td>
-                    <td><input id="orderDate" name="orderDate" type="text" placeholder="请输入送货日期" class="easyui-datebox" data-options="required:true" value="${order.orderDate }"></td>
+                    <td><input id="orderDate" name="orderDate" type="text" placeholder="请输入送货日期" class="easyui-datebox" data-options="required:true" value="<fmt:formatDate pattern="yyyy-MM-dd"  value="${order.orderDate }" />"></td>
                 	<td>单号：</td>
                 	<td><input name="orderNo" type="text" placeholder="保存后系统自动生成" class="span2" readonly="readonly" disabled="disabled" value="${order.orderNo }"></td>
                 </tr>
@@ -333,7 +333,7 @@
 	                    <td>业务：</td>
 	                    <td><input name="salesman" type="text"  class="span2"  value="${order.salesman }"></td>
 	                      <td>制单：</td>
-	                    <td><input name="prepareDocument" type="text"  class="\span2"  value="${order.prepareDocument }"></td>
+	                    <td><input name="prepareDocument" type="text"  class="span2"  value="${order.prepareDocument }"></td>
 	                      <td>审核：</td>
 	                    <td><input name="audit" type="text"  class="span2" value="${order.audit }"></td>
 	                      <td>客户签收：</td>

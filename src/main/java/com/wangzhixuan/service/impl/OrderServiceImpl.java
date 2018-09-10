@@ -1,13 +1,5 @@
 package com.wangzhixuan.service.impl;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-
 import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -20,6 +12,15 @@ import com.wangzhixuan.model.Customer;
 import com.wangzhixuan.model.Order;
 import com.wangzhixuan.model.OrderItem;
 import com.wangzhixuan.service.IOrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -107,4 +108,22 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 		}
 	}
 
+	@Override
+	public boolean updateById(Order order) {
+		//先删除选项
+		Map<String, Object> deleteMap = new HashMap<>();
+		deleteMap.put("order_id",order.getId());
+		orderItemMapper.deleteByMap(deleteMap);
+		//再添加
+		String itemJSONStr = order.getItemJSONStr();
+		itemJSONStr = itemJSONStr.replaceAll("&quot;", "\"");
+		List<OrderItem> orderItems = JSONArray.parseArray(itemJSONStr, OrderItem.class);
+		if (orderItems != null) {
+			for (OrderItem orderItem : orderItems) {
+				orderItem.setOrderId(order.getId());
+				orderItemMapper.insert(orderItem);
+			}
+		}
+		return super.updateById(order);
+	}
 }

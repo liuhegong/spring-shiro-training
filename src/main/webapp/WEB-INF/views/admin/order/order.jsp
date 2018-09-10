@@ -10,8 +10,8 @@
             pagination : true,
             singleSelect : true,
             idField : 'id',
-            sortName : 'create_time',
-            sortOrder : 'asc',
+            sortName : 'order_date',
+            sortOrder : 'DESC',
             pageSize : 20,
             pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
             frozenColumns : [ [ {
@@ -179,9 +179,69 @@
             buttons : [ {
                 text : '确定',
                 handler : function() {
-                    parent.$.modalDialog.openner_dataGrid = orderDataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-                    var f = parent.$.modalDialog.handler.find('#orderEditForm');
-                    f.submit();
+                    parent.$.modalDialog.openner_dataGrid = orderDataGrid;//因为添加成功之后，需要刷新这个treeGrid，所以先预定义好
+                    var submitFlag = true;
+                    debugger;
+                    var goodsTable = parent.$.modalDialog.handler.find('#goodsTable');
+                    var allRows = goodsTable.datagrid('getRows');
+                    if(allRows==null || allRows.length==0){
+                        $.messager.alert('警告','请添加送货信息','error');
+                        return ;
+                    }else{
+                        for (var i = 0; i < allRows.length; i++) {
+                            var row = allRows[i];
+                            if(row.editing){
+                                submitFlag = false;
+                            }
+                        }
+                    }
+                    if(submitFlag){
+
+                        var rowData = new Array();
+                        for (var i = 0; i < allRows.length; i++) {
+                            var row = allRows[i];
+                            rowData.push({
+                                itemNo:row.itemNo,
+                                title:row.title,
+                                itemUnit:row.itemUnit,
+                                num:row.num,
+                                price:row.price,
+                                totalFee:row.totalFee,
+                                description:row.description
+                            });
+                        }
+
+
+                        var itemJSONStrInput = parent.$.modalDialog.handler.find('#itemJSONStr');
+                        itemJSONStrInput.val(JSON.stringify(rowData));
+                        var f = parent.$.modalDialog.handler.find('#orderEditForm');
+                        f.submit();
+                    }else{
+                        $.messager.confirm('温馨提示：','存在未保存的送货记录，是否忽略该记录?',function(r){
+                            if (r){
+                                var rowData = new Array();
+                                for (var i = 0; i < allRows.length; i++) {
+                                    var row = allRows[i];
+                                    rowData.push({
+                                        itemNo:row.itemNo,
+                                        title:row.title,
+                                        itemUnit:row.itemUnit,
+                                        num:row.num,
+                                        price:row.price,
+                                        totalFee:row.totalFee,
+                                        description:row.description
+                                    });
+                                }
+
+
+                                var itemJSONStrInput = parent.$.modalDialog.handler.find('#itemJSONStr');
+                                itemJSONStrInput.val(JSON.stringify(rowData));
+                                var f = parent.$.modalDialog.handler.find('#orderEditForm');
+                                f.submit();
+                            }
+
+                        });
+                    }
                 }
             } ]
         });
