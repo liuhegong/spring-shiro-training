@@ -34,39 +34,26 @@
        		 <input name="id" type="hidden"  value="${customer.id}">
             <table class="grid">
                 <tr>
-                    <td>公司名称</td>
-                    <td><input name="name" type="text" placeholder="请输入公司名称" class="easyui-validatebox span2" data-options="required:true" value="${order.name}"></td>
+                    <td>客户名称</td>
+                    <td><input name="name" type="text" placeholder="请输入公司名称" class="easyui-validatebox span2" data-options="required:true" value="${customer.name}"></td>
                 </tr>
                 <tr>
-                    <td>负责人</td>
-                    <td><input name="principal" type="text" placeholder="请输入公司负责人姓名" class="easyui-validatebox span2" data-options="required:true" value="${order.principal}"></td>
+                    <td>联系人</td>
+                    <td><input name="linkman" type="text" placeholder="请输入公司负责人姓名" class="easyui-validatebox span2" data-options="required:true" value="${customer.linkman}"></td>
                 </tr>
                 <tr>
                     <td>电话</td>
-                    <td><input name="telephone" type="text" placeholder="请输入公司座机号码" class="easyui-validatebox span2" data-options="required:true" value="${order.telephone}"></td>
+                    <td><input name="telephone" type="text" placeholder="请输入公司座机号码" class="easyui-validatebox span2" data-options="required:true" value="${customer.telephone}"></td>
                 </tr>
-               
-                <tr>
-                    <td>手机</td>
-                    <td><input name="mobile" type="text" placeholder="请输入手机号码" class="easyui-validatebox span2"  value="${order.mobile }"></td>
-                </tr>
+
                 <tr>
                     <td>地址</td>
-                    <td><input name="address" type="text" placeholder="请输入公司地址" class="easyui-validatebox span2" data-options="required:true" value="${order.address }"></td>
+                    <td><input name="address" type="text" placeholder="请输入公司地址" class="easyui-validatebox span2" data-options="required:true" value="${customer.address }"></td>
                 </tr>
-               
-                <tr>
-                    <td>状态</td>
-                    <td >
-                        <select name="status" class="easyui-combobox" data-options="width:140,height:29,editable:false,panelHeight:'auto'">
-                            <option value="0" <c:if test="${order.status==0 }">selected="selected"</c:if>>正常</option>
-                            <option value="1" <c:if test="${order.status==1 }">selected="selected"</c:if>>停用</option>
-                        </select>
-                    </td>
-                </tr>
+
                 <tr>
                     <td>备注</td>
-                    <td colspan="3"><textarea name="description">${order.description }</textarea></td>
+                    <td colspan="3"><textarea name="description">${customer.description }</textarea></td>
                 </tr>
             </table>
         </form>

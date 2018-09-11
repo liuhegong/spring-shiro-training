@@ -1,7 +1,9 @@
 package com.wangzhixuan.controller;
 
-import javax.validation.Valid;
-
+import com.wangzhixuan.commons.base.BaseController;
+import com.wangzhixuan.commons.result.PageInfo;
+import com.wangzhixuan.model.Customer;
+import com.wangzhixuan.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,10 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.wangzhixuan.commons.base.BaseController;
-import com.wangzhixuan.commons.result.PageInfo;
-import com.wangzhixuan.model.Customer;
-import com.wangzhixuan.service.ICustomerService;
+import javax.validation.Valid;
 
 /**
  * @description：客户信息管理
@@ -67,7 +66,7 @@ public class CustomerController extends BaseController {
 	/**
 	 * 添加
 	 *
-	 * @param role
+	 * @param customer
 	 * @return
 	 */
 	@PostMapping("/add")
@@ -107,7 +106,7 @@ public class CustomerController extends BaseController {
 	/**
 	 * 编辑
 	 *
-	 * @param role
+	 * @param customer
 	 * @return
 	 */
 	@RequestMapping("/edit")
