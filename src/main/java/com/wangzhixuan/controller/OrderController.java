@@ -1,16 +1,11 @@
 package com.wangzhixuan.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.wangzhixuan.commons.base.BaseController;
 import com.wangzhixuan.commons.result.PageInfo;
 import com.wangzhixuan.commons.utils.StringEscapeEditor;
-import com.wangzhixuan.model.Company;
-import com.wangzhixuan.model.Customer;
-import com.wangzhixuan.model.Order;
-import com.wangzhixuan.model.OrderItem;
-import com.wangzhixuan.service.ICompanyService;
-import com.wangzhixuan.service.ICustomerService;
-import com.wangzhixuan.service.IOrderItemService;
-import com.wangzhixuan.service.IOrderService;
+import com.wangzhixuan.model.*;
+import com.wangzhixuan.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -46,6 +41,9 @@ public class OrderController extends BaseController {
 	private ICustomerService customerService;
     @Autowired
 	private IOrderItemService orderItemService;
+
+	@Autowired
+	private IUnitService unitService;
 
 	@InitBinder
 	@Override
@@ -165,6 +163,14 @@ public class OrderController extends BaseController {
 		Map<String, Object> columnMap = new HashMap<String, Object>();
 		columnMap.put("order_id", order.getId());
 		List<OrderItem> orderItemList = orderItemService.selectByMap(columnMap);
+		if (orderItemList != null && !orderItemList.isEmpty()) {
+			for (OrderItem orderItem : orderItemList) {
+				EntityWrapper<Unit> ew = new EntityWrapper<Unit>();
+				ew.eq("unit_code",orderItem.getItemUnit());
+				Unit unit = unitService.selectOne(ew);
+				orderItem.setItemUnit(unit.getUnitName());
+			}
+		}
 
 		model.addAttribute("order", order);
 		model.addAttribute("orderItemList", orderItemList);
